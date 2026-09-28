@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173b35">
+  <title>Learning recommendations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="Learning recommendations home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-copy"><strong>FIELDNOTE</strong><small>LEARNING SYSTEMS</small></span>
+      </a>
+
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav-item is-active" href="#recommendations"><span class="nav-symbol" aria-hidden="true">↗</span>For you</a>
+      <a class="nav-item" href="#activity"><span class="nav-symbol" aria-hidden="true">◷</span>Activity</a>
+
+      <div class="sidebar-spacer"></div>
+      <section class="health-block" aria-live="polite">
+        <span class="health-indicator" id="health-indicator"></span>
+        <div><strong id="health-label">Checking service</strong><small>RECOMMENDATION API</small></div>
+      </section>
+      <div class="sidebar-footer">DAY 30 CAPSTONE <span>·</span> LOCAL</div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Workspace</span><b>/</b><strong>Recommendations</strong></div>
+        <div class="topbar-meta"><span class="live-dot"></span> SERVICE ONLINE <span class="meta-divider"></span> v1.0
+        </div>
+      </header>
+
+      <section class="page-intro" id="recommendations">
+        <div>
+          <p class="eyebrow">YOUR LEARNING DESK <span>01 / 04</span></p>
+          <h1>Learning recommendations</h1>
+          <p class="intro-copy">A considered next step, shaped by what you know and what you’re exploring.</p>
+        </div>
+        <div class="intro-stamp" aria-hidden="true"><span>LEARN</span><b>↗</b><span>BY DOING</span></div>
+      </section>
+
+      <section class="control-row" aria-label="Recommendation controls">
+        <form id="recommendation-form" class="controls-form">
+          <label class="field-group" for="user-id">
+            <span>LEARNER ID</span>
+            <input id="user-id" name="user_id" type="number" min="1" value="1" required>
+          </label>
+          <span class="control-divider" aria-hidden="true"></span>
+          <label class="field-group limit-field" for="result-limit">
+            <span>SHOW</span>
+            <select id="result-limit" name="limit">
+              <option value="3">3 items</option>
+              <option value="5" selected>5 items</option>
+              <option value="10">10 items</option>
+            </select>
+          </label>
+          <button class="primary-button" type="submit"><span aria-hidden="true">↻</span> Refresh list</button>
+        </form>
+        <div class="request-note"><span class="request-pulse"></span><span id="request-status">Ready when you are</span></div>
+      </section>
+
+      <div class="content-layout">
+        <section class="recommendation-section" aria-labelledby="results-heading">
+          <div class="section-heading">
+            <div><p class="eyebrow">CURATED FOR THIS LEARNER</p><h2 id="results-heading">Your next lessons</h2></div>
+            <span class="result-count" id="result-count">— ITEMS</span>
+          </div>
+          <div id="recommendation-list" class="recommendation-list" aria-live="polite" aria-busy="false"></div>
+          <div id="empty-state" class="empty-state" hidden>
+            <span class="empty-mark" aria-hidden="true">∅</span>
+            <h3>No recommendations yet</h3>
+            <p>Try another learner ID or check back after more content is added.</p>
+          </div>
+          <div id="error-state" class="error-state" role="alert" hidden></div>
+        </section>
+
+        <aside class="insight-rail" id="activity" aria-label="Recommendation activity">
+          <div class="rail-heading"><p class="eyebrow">SYSTEM PULSE</p><span class="pulse-mark" aria-hidden="true">●</span></div>
+          <h2>In the moment</h2>
+          <p class="rail-copy">Live service signals from this session.</p>
+
+          <div class="metric-block">
+            <span class="metric-label">REQUESTS SERVED</span>
+            <strong class="metric-value" id="metric-requests">—</strong>
+            <span class="metric-foot">Since service start</span>
+          </div>
+          <div class="metric-block">
+            <span class="metric-label">AVERAGE RESPONSE</span>
+            <strong class="metric-value"><span id="metric-latency">—</span><small>ms</small></strong>
+            <span class="metric-foot">Across API requests</span>
+          </div>
+          <div class="metric-block metric-last">
+            <span class="metric-label">CACHE HIT RATE</span>
+            <strong class="metric-value" id="metric-cache">—</strong>
+            <div class="metric-track"><span id="cache-bar"></span></div>
+          </div>
+
+          <div class="rail-note"><span class="note-star" aria-hidden="true">✳</span><span>Every interaction helps tune the next set of suggestions.</span></div>
+        </aside>
+      </div>
+
+      <footer class="page-footer"><span>FIELDNOTE / RECOMMENDATION ENGINE</span><span>LEARNING IS A PRACTICE</span></footer>
+    </main>
+  </div>
+</body>
+</html>
